@@ -1,0 +1,578 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ZAMZZ STORE X RAPS® - Daftar Layanan</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&family=Roboto:wght@300;400;700&display=swap');
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Roboto', sans-serif;
+            background: linear-gradient(135deg, #0f0c29, #302b63, #24243e);
+            color: #fff;
+            min-height: 100vh;
+            overflow-x: hidden;
+            position: relative;
+        }
+        
+        #particles-js {
+            position: fixed;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            z-index: -1;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .welcome-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.95);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+            flex-direction: column;
+        }
+        
+        .welcome-text {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 3.5rem;
+            text-align: center;
+            animation: neon-flicker 2s infinite alternate;
+            text-shadow: 0 0 10px #ff073a, 0 0 20px #ff073a, 0 0 30px #ff073a;
+            margin-bottom: 30px;
+        }
+        
+        .enter-btn {
+            margin-top: 30px;
+            padding: 15px 40px;
+            background: transparent;
+            border: 2px solid #ff073a;
+            color: #ff073a;
+            font-family: 'Orbitron', sans-serif;
+            font-size: 1.2rem;
+            cursor: pointer;
+            transition: all 0.3s;
+            text-shadow: 0 0 5px #ff073a;
+            box-shadow: 0 0 10px #ff073a;
+            border-radius: 5px;
+        }
+        
+        .enter-btn:hover {
+            background: #ff073a;
+            color: #000;
+            box-shadow: 0 0 20px #ff073a, 0 0 40px #ff073a;
+        }
+        
+        .floating-text {
+            position: fixed;
+            color: rgba(255, 7, 58, 0.2);
+            font-size: 1.8rem;
+            z-index: -1;
+            user-select: none;
+            animation: float 20s infinite linear;
+            font-weight: bold;
+        }
+        
+        @keyframes float {
+            0% {
+                transform: translateY(100vh) rotate(0deg);
+            }
+            100% {
+                transform: translateY(-100px) rotate(360deg);
+            }
+        }
+        
+        header {
+            text-align: center;
+            padding: 20px 0;
+            margin-bottom: 30px;
+            border-bottom: 2px solid #ff073a;
+            box-shadow: 0 5px 15px rgba(255, 7, 58, 0.3);
+        }
+        
+        h1 {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 3rem;
+            margin: 0;
+            text-shadow: 0 0 10px #ff073a, 0 0 20px #ff073a;
+            animation: neon-flicker 2s infinite alternate;
+        }
+        
+        h2 {
+            color: #ff073a;
+            border-left: 5px solid #ff073a;
+            padding-left: 10px;
+            text-shadow: 0 0 5px #ff073a;
+            margin: 20px 0 15px;
+            font-family: 'Orbitron', sans-serif;
+        }
+        
+        h3 {
+            color: #ff073a;
+            margin: 15px 0 10px;
+            text-shadow: 0 0 3px #ff073a;
+        }
+        
+        .section {
+            background: rgba(0, 0, 0, 0.7);
+            padding: 20px;
+            margin-bottom: 30px;
+            border-radius: 10px;
+            border: 1px solid rgba(255, 7, 58, 0.3);
+            box-shadow: 0 0 15px rgba(255, 7, 58, 0.2);
+            transition: transform 0.3s;
+            backdrop-filter: blur(5px);
+        }
+        
+        .section:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 0 20px rgba(255, 7, 58, 0.4);
+        }
+        
+        .price-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 15px;
+            margin-top: 15px;
+        }
+        
+        .price-item {
+            background: rgba(255, 7, 58, 0.1);
+            padding: 12px;
+            border-radius: 8px;
+            border-left: 3px solid #ff073a;
+            transition: all 0.3s;
+        }
+        
+        .price-item:hover {
+            background: rgba(255, 7, 58, 0.2);
+            transform: translateX(5px);
+        }
+        
+        .highlight {
+            color: #ffeb3b;
+            text-shadow: 0 0 5px #ffeb3b;
+            font-weight: bold;
+        }
+        
+        .contact-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            margin: 30px 0;
+            flex-wrap: wrap;
+        }
+        
+        .contact-btn {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 12px 25px;
+            background: rgba(255, 7, 58, 0.2);
+            border: 1px solid #ff073a;
+            border-radius: 8px;
+            color: white;
+            text-decoration: none;
+            transition: all 0.3s;
+            font-weight: bold;
+        }
+        
+        .contact-btn:hover {
+            background: #ff073a;
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(255, 7, 58, 0.4);
+        }
+        
+        footer {
+            text-align: center;
+            padding: 20px;
+            margin-top: 50px;
+            border-top: 2px solid #ff073a;
+            box-shadow: 0 -5px 15px rgba(255, 7, 58, 0.3);
+        }
+        
+        .contact-info {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 20px;
+            margin-top: 15px;
+        }
+        
+        .contact-item {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .music-control {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background: rgba(0, 0, 0, 0.7);
+            border: 1px solid #ff073a;
+            border-radius: 50%;
+            width: 50px;
+            height: 50px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            cursor: pointer;
+            z-index: 100;
+            box-shadow: 0 0 10px #ff073a;
+        }
+        
+        .music-control i {
+            color: #ff073a;
+            font-size: 1.5rem;
+        }
+        
+        .qris-image {
+            max-width: 200px;
+            margin: 15px auto;
+            display: block;
+            border: 2px solid #ff073a;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(255, 7, 58, 0.5);
+        }
+        
+        @keyframes neon-flicker {
+            0%, 19%, 21%, 23%, 25%, 54%, 56%, 100% {
+                text-shadow: 0 0 10px #ff073a, 0 0 20px #ff073a, 0 0 30px #ff073a;
+                opacity: 1;
+            }
+            20%, 24%, 55% {
+                text-shadow: none;
+                opacity: 0.7;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .price-list {
+                grid-template-columns: 1fr;
+            }
+            
+            .welcome-text {
+                font-size: 2rem;
+            }
+            
+            h1 {
+                font-size: 2rem;
+            }
+            
+            .contact-buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div id="particles-js"></div>
+    
+    <div class="welcome-overlay" id="welcomeOverlay">
+        <div class="welcome-text">SELAMAT DATANG KE DALAM LIST PRODUK ZAMZZ STORE X RAPS</div>
+        <button class="enter-btn" onclick="enterSite()">LIHAT PRODUK</button>
+    </div>
+    
+    <div class="container" id="mainContent" style="display: none;">
+        <header>
+            <h1>ZAMZZ STORE OFFICIAL®</h1>
+        </header>
+        
+        <div class="contact-buttons">
+            <a href="https://wa.me/62895365185464" class="contact-btn" target="_blank">
+                <i class="fab fa-whatsapp"></i> WhatsApp Admin
+            </a>
+            <a href="https://t.me/zamzzstore" class="contact-btn" target="_blank">
+                <i class="fab fa-telegram"></i> Telegram
+            </a>
+        </div>
+        
+        <div class="section">
+            <h2>PANEL PTERODACTYL📱</h2>
+            <div class="price-list">
+                <div class="price-item">PUBLIC & PRIVATE 1GB CPU 1%: <span class="highlight">1K</span></div>
+                <div class="price-item">2GB CPU 2%: <span class="highlight">2K</span></div>
+                <div class="price-item">3GB CPU 3%: <span class="highlight">3K</span></div>
+                <div class="price-item">4GB CPU 4%: <span class="highlight">4K</span></div>
+                <div class="price-item">5GB CPU 5%: <span class="highlight">5K</span></div>
+               
+                <div class="price-item">UNLIMITED📱: <span class="highlight">2K</span></div>
+            </div>
+            <p>SPEK VPS!! 16 CORE 8</p>
+        </div>
+        
+        <div class="section">
+            <h2>JABATAN PANEL</h2>
+            <div class="price-list">
+                <div class="price-item">RESS: <span class="highlight">3K</span></div>
+                <div class="price-item">ADP: <span class="highlight">5K</span></div>
+                <div class="price-item">PATNER: <span class="highlight">7K</span></div>
+                
+            </div>
+            <p>!!BAGI YANG MINAT DENGAN JUALAN!!</p>
+        </div>
+        
+
+        
+        <div class="section">
+            <h2>JASA PEMBUATAN WEB🔥🔥</h2>
+            <div class="price-list">
+                <div class="price-item">1. PEMBUATAN WEB PAYMENT: <span class="highlight">10K</span></div>
+                <div class="price-item">2. PEMBUATAN WEB BUG ATACK WA: <span class="highlight">30K</span></div>
+                <div class="price-item">3. PEMBUATAN WEB MT BAND: <span class="highlight">24K</span></div>
+                <div class="price-item">4. PEMBUATAN WEB RSDP MENU JAVA JS,FUNICTION,CONFIG ITU DARI KALIAN BIAR BISA WORK KE WA KORBA: <span class="highlight">60K</span></div>
+            </div>
+        </div>
+        
+        <div class="section">
+            <h2>Scipt bot tele & wa</h2>
+            <div class="price-list">
+                <div class="price-item">Sc Ambacrash: <span class="highlight">20K no enc ( CLOSE )</span></div>
+                <div class="price-item">Sc x-vallow via tele & wa: <span class="highlight">10K</span></div>
+            </div>
+        </div>
+        
+        <div class="section">
+            <h2>JASUNBAN</h2>
+            <div class="price-list">
+                <div class="price-item">PERMA FRESS: <span class="highlight">10K</span></div>
+                <div class="price-item">PERMA HARD: <span class="highlight">20K</span></div>
+                <div class="price-item">PERMA BATU: <span class="highlight">30K</span></div>
+            </div>
+        </div>
+        
+        <div class="section">
+            <h2>MENERIMA MURID</h2>
+            <div class="price-list">
+                </div>
+                <div class="price-item">MURUNBAND: <span class="highlight">20K</span></div>
+                <div class="price-item">MURNOK: <span class="highlight">5K</span></div>
+                <div class="price-item">MURWEB PAYMENT: <span class="highlight">10K</span></div>
+                  
+                  </div>
+       
+     
+        <div class="section">
+            <h2>LIST NOKOS WA&TELEGRAM</h2>
+            <h3>Ready Nokos Wa</h3>
+            <div class="price-list">
+                <div class="price-item">🇺🇸 +1 Usa/Canada: <span class="highlight">10K</span></div>
+                <div class="price-item">🇬🇧 +44 Inggris: <span class="highlight">15K</span></div>
+                <div class="price-item">🇹🇭 +66 Thailand: <span class="highlight">15K</span></div>
+                <div class="price-item">🇮🇹 +39 Italia: <span class="highlight">25K</span></div>
+                <div class="price-item">🇭🇳 +504 Honduras: <span class="highlight">15K</span></div>
+                <div class="price-item">🇲🇦 +212 Morroco: <span class="highlight">20K</span></div>
+                <div class="price-item">🇨🇮 +225 Ivory Coast: <span class="highlight">5K</span></div>
+            </div>
+            
+            <h3>Ready Tele</h3>
+            <div class="price-list">
+                <div class="price-item">🇺🇸 +1 Usa: <span class="highlight">15K</span></div>
+                <div class="price-item">🇲🇲 +95 Myanmar: <span class="highlight">15K</span></div>
+                <div class="price-item">🇹🇳 +216 Tunisia: <span class="highlight">10K</span></div>
+                <div class="price-item">🇭🇳 +504 Honduras: <span class="highlight">15K</span></div>
+                <div class="price-item">🇬🇹 +502 Guatemala: <span class="highlight">15K</span></div>
+                <div class="price-item">🇹🇴 +676 Tonga: <span class="highlight">50K</span></div>
+                <div class="price-item">🇻🇺 +678 Vanuatu: <span class="highlight">50K</span></div>
+                <div class="price-item">🇫🇯 +679 Fiji: <span class="highlight">60K</span></div>
+            </div>
+        </div>
+        
+        <div class="section">
+            <h2>SC BUG DRAGON CRASH VIA WA</h2>
+            <p></p>
+            <div class="price-list">
+          <div class="price-item">⚡️𝗘𝗙𝗘𝗞?</div>
+                <div class="price-item">⚡️𝗙𝗖 𝗡𝗢 𝗖𝗟𝗜𝗖𝗞 𝗢𝗥𝗜</div>
+                <div class="price-item">⚡️𝗗𝗘𝗟𝗔𝗬 𝗡𝗘𝗪</div>
+                <div class="price-item">⚡️𝗙𝗖 𝗡𝗢 𝗖𝗟𝗜𝗖𝗞 𝗢𝗥𝗜 + 𝗗𝗘𝗟𝗔𝗬 𝗡𝗘𝗪</div>
+                <div class="price-item">⚡️𝗙𝗖 𝗜𝗡𝗙𝗜𝗡𝗧𝗬 𝗢𝗥𝗜</div>
+                <div class="price-item">⚡️𝗙𝗖 𝗜𝗡𝗙𝗜𝗡𝗧𝗬 𝗕𝗘𝗧𝗔</div>
+                <div class="price-item">⚡️𝗙𝗖 𝗜𝗡𝗙𝗜𝗡𝗧𝗬 𝗕𝗜𝗦𝗡𝗜𝗦</div>
+                <div class="price-item">⚡️𝗙𝗖 𝗠𝗢𝗗𝗘 𝗣𝗘𝗦𝗔𝗪𝗔𝗧</div>
+                <div class="price-item">⚡️𝗜𝗡𝗩𝗜𝗦𝗜𝗕𝗟𝗘 𝗛𝗔𝗥𝗗</div>
+                <div class="price-item">⚡️𝗕𝗟𝗔𝗡𝗞 𝗦𝗖𝗥𝗘𝗘𝗡</div>
+                <div class="price-item">⚡️𝗙𝗥𝗘𝗭𝗘 𝗖𝗛𝗔𝗧</div>
+                <div class="price-item">⚡️𝗙𝗖 𝗡𝗢 𝗖𝗟𝗜𝗖𝗞 𝗜𝗢𝗦 + 𝗜𝗡𝗩𝗜𝗦𝗜𝗕𝗟𝗘 𝗛𝗔𝗥𝗗</div>
+                <div class="price-item">⚡️𝗖𝗥𝗔𝗦𝗛 𝗚𝗥𝗨𝗣</div>
+            </div>
+            <p>⚡️𝗣𝗥𝗜𝗖𝗘 : <span class="highlight">10K</span></p>
+        </div>
+              <div class=section
+            <h2>JABATAN SC DRAGON CRASH</h2>
+            <div class="price-list">
+                <div class="price-item">RESSELER: <span class="highlight">15K</span></div>
+                <div class="price-item">PARTNER : <span class="highlight">35K</span></div>
+                <div class="price-item">CEO : <span class="highlight">75K</span></div>
+                <div class="price-item">MODS : <span class="highlight">90K</span></div>
+                
+            </div>
+            <p>!! DIJAMIN BALMOD 100% !!</p>
+        </div>
+        
+        
+        
+        </div>
+        
+                  </div>
+            </div>
+        </div>
+        
+       
+      <div class="section">
+            <h2>PAYMENT</h2>
+            <div class="price-list">
+                <div class="price-item">DANA: <span class="highlight">083120936609</span></div>
+                <div class="price-item">GOPAY: <span class="highlight">0895800166456</span></div>
+            </div>
+            <h3>QRIS</h3>
+            <img src="https://files.catbox.moe/xm6iod.jpg" alt="QRIS Payment" class="qris-image">
+        </div>
+        
+        <div class="contact-buttons">
+            <a href="https://wa.me/62895365185464" class="contact-btn" target="_blank">
+                <i class="fab fa-whatsapp"></i> WhatsApp Admin
+            </a>
+            <a href="https://t.me/zamzzstore" class="contact-btn" target="_blank">
+                <i class="fab fa-telegram"></i> Telegram
+            </a>
+        </div>
+        
+        <footer>
+            <h2>KONTAK ADMIN</h2>
+            <div class="contact-info">
+                <div class="contact-item">
+                    <span>WhatsApp:</span>
+                    <span class="highlight">62895365185464</span>
+                </div>
+                <div class="contact-item">
+                    <span>TELEGRAM:</span>
+                    <span class="highlight">t.me/zamzzstore</span>
+                </div>
+            </div>
+        </footer>
+    </div>
+    
+    <div class="music-control" id="musicControl" onclick="toggleMusic()">
+        <i class="fas fa-music"></i>
+    </div>
+    
+    <audio id="bgMusic" loop>
+        <source src="https://cdn.pixabay.com/download/audio/2022/01/20/audio_dc39bbc811.mp3?filename=electronic-rock-king-around-here-15045.mp3" type="audio/mpeg">
+        Browser Anda tidak mendukung elemen audio.
+    </audio>
+    
+    <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
+    <script>
+        // Inisialisasi particles.js
+        document.addEventListener('DOMContentLoaded', function() {
+            particlesJS('particles-js', {
+                particles: {
+                    number: { value: 80, density: { enable: true, value_area: 800 } },
+                    color: { value: "#ff073a" },
+                    shape: { type: "circle" },
+                    opacity: { value: 0.5, random: true },
+                    size: { value: 3, random: true },
+                    line_linked: {
+                        enable: true,
+                        distance: 150,
+                        color: "#ff073a",
+                        opacity: 0.4,
+                        width: 1
+                    },
+                    move: {
+                        enable: true,
+                        speed: 2,
+                        direction: "none",
+                        random: true,
+                        straight: false,
+                        out_mode: "out",
+                        bounce: false
+                    }
+                },
+                interactivity: {
+                    detect_on: "canvas",
+                    events: {
+                        onhover: { enable: true, mode: "repulse" },
+                        onclick: { enable: true, mode: "push" },
+                        resize: true
+                    }
+                },
+                retina_detect: true
+            });
+        });
+        
+        // Membuat teks mengambang
+        function createFloatingText() {
+            const texts = ["ZAMZZ STORE X RAPS", "HOSTING", "JASA WEB", "NOKOS", "SC BUG", "PREMIUM", "NEON", "CYBER"];
+            const container = document.body;
+            
+            texts.forEach(text => {
+                const floatingText = document.createElement('div');
+                floatingText.className = 'floating-text';
+                floatingText.textContent = text;
+                floatingText.style.left = Math.random() * 90 + 'vw';
+                floatingText.style.animationDuration = (15 + Math.random() * 20) + 's';
+                floatingText.style.fontSize = (1 + Math.random() * 2) + 'rem';
+                container.appendChild(floatingText);
+            });
+        }
+        
+        // Memutar/menghentikan musik
+        function toggleMusic() {
+            const music = document.getElementById('bgMusic');
+            const musicControl = document.getElementById('musicControl');
+            
+            if (music.paused) {
+                music.play();
+                musicControl.innerHTML = '<i class="fas fa-pause"></i>';
+            } else {
+                music.pause();
+                musicControl.innerHTML = '<i class="fas fa-music"></i>';
+            }
+        }
+        
+        // Memasuki situs
+        function enterSite() {
+            document.getElementById('welcomeOverlay').style.display = 'none';
+            document.getElementById('mainContent').style.display = 'block';
+            
+            // Mulai membuat teks mengambang
+            createFloatingText();
+            
+            // Otomatis memutar musik
+            setTimeout(() => {
+                toggleMusic();
+            }, 1000);
+        }
+        
+        // Menambahkan event listener untuk memastikan musik dapat diputar
+        document.addEventListener('DOMContentLoaded', function() {
+            document.getElementById('bgMusic').volume = 0.3;
+        });
+    </script>
+</body>
+</html>
